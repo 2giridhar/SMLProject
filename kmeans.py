@@ -84,8 +84,8 @@ if __name__ == "__main__":
     # Reading and storing input
     inp_file = raw_input("Enter the input file path: ")
     in_data = np.genfromtxt(inp_file, delimiter=',')
-    mean_val = np.mean(in_data, axis=0)
-    mean_val[mean_val.shape(0)-1] = 100
-    print(mean_val)
-    in_data = (in_data/mean_val)*100
+    # mean_val = np.mean(in_data, axis=0)
+    # mean_val[mean_val.shape(0)-1] = 100
+    # print(mean_val)
+    # in_data = (in_data/mean_val)*100
     print(kmeans(data=in_data, k=20))
