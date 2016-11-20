@@ -9,13 +9,11 @@ def assign_clusters(data, centroids):
     for point in data:
         min_distance = sys.float_info.max
         length = len(centroids)
-        new_point = point
-        new_point.pop()
+        new_point = point[:-1].copy()
         for i in range(0, length):
-            center = centroids[i]
-            center.pop()
-            dist = np.dot(new_point, center)  # np.sqrt(sum((np.asarray(point) - np.asarray(centroids[i])) ** 2))
-            if dist < min_distance:
+            center = centroids[i][:-1].copy()
+            dist = np.sqrt(sum((np.asarray(point) - np.asarray(centroids[i])) ** 2))
+            if dist <= min_distance:
                 cluster_key = i
                 min_distance = dist
         # noinspection PyBroadException
@@ -40,11 +38,9 @@ def compute_objective_function(centroids, clusters):
     objective_sum = 0
     for key in keys:
         for point in clusters[key]:
-            new_point = point
-            new_point.pop()
-            center = centroids[key]
-            center.pop()
-            objective_sum += np.dot(new_point, center)
+            new_point = point[:-1].copy()
+            center = centroids[key][:-1].copy()
+            objective_sum += np.sqrt(sum((np.asarray(point) - np.asarray(centroids[key])) ** 2))
     return objective_sum
 
 
@@ -63,15 +59,17 @@ def kmeans(data, k):
 
     while not centroids_converged(centroids, old_centroids, iterations):
         iterations += 1
+        print("iteration "+str(iterations))
         old_centroids = centroids
         clusters = assign_clusters(data, centroids)
         centroids = generate_new_centroids(clusters)
+    store_clusters(centroids, clusters)
     return compute_objective_function(centroids, clusters)
 
 
 def store_clusters(centroids, clusters):
     for cluster_id in clusters:
-        cluster_file = open("Clusters/Cluster_" + cluster_id + ".csv", "wb")
+        cluster_file = open("Clusters/Cluster" + str(cluster_id) + ".csv", "wb")
         csv_file = csv.writer(cluster_file)
         for vector in clusters[cluster_id]:
             csv_file.writerow(vector)
@@ -85,4 +83,9 @@ def store_clusters(centroids, clusters):
 if __name__ == "__main__":
     # Reading and storing input
     inp_file = raw_input("Enter the input file path: ")
-    kmeans(data=inp_file, k=50)
+    in_data = np.genfromtxt(inp_file, delimiter=',')
+    mean_val = np.mean(in_data, axis=0)
+    mean_val[mean_val.shape(0)-1] = 100
+    print(mean_val)
+    in_data = (in_data/mean_val)*100
+    print(kmeans(data=in_data, k=20))
