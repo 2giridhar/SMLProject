@@ -12,7 +12,7 @@ def assign_clusters(data, centroids):
         new_point = point[:-1].copy()
         for i in range(0, length):
             center = centroids[i][:-1].copy()
-            dist = np.sqrt(sum((np.asarray(point) - np.asarray(centroids[i])) ** 2))
+            dist = np.sqrt(sum((np.asarray(new_point) - np.asarray(center)) ** 2))
             if dist <= min_distance:
                 cluster_key = i
                 min_distance = dist
@@ -40,7 +40,7 @@ def compute_objective_function(centroids, clusters):
         for point in clusters[key]:
             new_point = point[:-1].copy()
             center = centroids[key][:-1].copy()
-            objective_sum += np.sqrt(sum((np.asarray(point) - np.asarray(centroids[key])) ** 2))
+            objective_sum += np.sqrt(sum((np.asarray(new_point) - np.asarray(center)) ** 2))
     return objective_sum
 
 
@@ -88,4 +88,4 @@ if __name__ == "__main__":
     # mean_val[mean_val.shape(0)-1] = 100
     # print(mean_val)
     # in_data = (in_data/mean_val)*100
-    print(kmeans(data=in_data, k=20))
+    print(kmeans(data=in_data, k=2))
