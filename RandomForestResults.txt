@@ -1,0 +1,44 @@
+C:\Users\viswa\Anaconda2\python.exe C:/Users/viswa/PycharmProjects/Expedia/RandomForest.py
+Enter the input file path: D:\Education\ASU\SML\Project\Expedia\TrainData\final_dataset.csv
+Test Sample: 0
+Accuracy:
+73.784
+___________________
+Test Sample: 1
+Accuracy:
+79.348
+___________________
+Test Sample: 2
+Accuracy:
+80.617
+___________________
+Test Sample: 3
+Accuracy:
+80.427
+___________________
+Test Sample: 4
+Accuracy:
+80.294
+___________________
+Test Sample: 5
+Accuracy:
+80.003
+___________________
+Test Sample: 6
+Accuracy:
+80.648
+___________________
+Test Sample: 7
+Accuracy:
+81.516
+___________________
+Test Sample: 8
+Accuracy:
+83.221
+___________________
+Test Sample: 9
+Accuracy:
+85.447
+___________________
+
+Process finished with exit code 0
