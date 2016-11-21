@@ -60,14 +60,14 @@ def knn(cluster_data, sample_data):
 if __name__ == "__main__":
     # Reading and storing input
     inp_file = raw_input("Enter the input file path: ")
-    sample_data = random.sample(np.genfromtxt(inp_file, delimiter=',', dtype=int), 20000)
+    sample_data = np.genfromtxt("Test/test.csv", delimiter=',', dtype=int)
     # sample_data = random.sample(in_data, 10)
 
     center_data = np.genfromtxt("Clusters/Centers.csv", delimiter=',', dtype=int)
     closest_cluster = calculate_closest_cluster(center_data, sample_data)
     overall_correct = 0
     for key in closest_cluster:
-        cluster_data = np.genfromtxt("Clusters/Cluster" + str(key) + ".csv", delimiter=',', dtype=int)
+        cluster_data = np.genfromtxt("Train/Cluster" + str(key) + ".csv", delimiter=',', dtype=int)
         correct_count = knn(cluster_data, closest_cluster[key])
         overall_correct += correct_count
     print ("-------------------")
