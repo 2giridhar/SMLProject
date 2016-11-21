@@ -22,11 +22,8 @@ if __name__ == "__main__":
         train = train_data[:,[x for x in range(0,22)]]
         gbc.fit(train, target)
         test = test_data[:,[x for x in range(0,22)]]
-        result = gbc.predict(test)
-        correct = 0
-        for i in range(0,records_count):
-            if test_data[i][22] == result[i]:
-                correct += 1
+        test_result = test_data[:,-1]
+        accuracy = gbc.score(test, test_result)
         print("Accuracy:")
-        print(float(correct)/records_count)*100
+        print(accuracy)
         print("___________________")
