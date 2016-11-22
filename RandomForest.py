@@ -11,10 +11,10 @@ def get_train_test_data(in_data, records_count):
 
 
 if __name__ == "__main__":
-    rf = RandomForestClassifier(n_jobs=2)
     inp_file = raw_input("Enter the input file path: ")
     in_data = np.loadtxt(inp_file, dtype=int, delimiter=',')
     for i in range(0,5):
+        rf = RandomForestClassifier(n_jobs=2)
         print("Test Sample: " + str(i))
         records_count = 100
         train_data, test_data = get_train_test_data(in_data, records_count)
