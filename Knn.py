@@ -42,7 +42,7 @@ def knn(cluster_data, sample_data):
         k = 0
         hotel_cluster_id = defaultdict(int)
         for key in dist_dict:
-            if k == 1:
+            if k == 3:
                 break
             hotel_cluster_id[cluster_data[key[0], 22]] += 1
             k += 1
@@ -59,7 +59,7 @@ def knn(cluster_data, sample_data):
 
 if __name__ == "__main__":
     # Reading and storing input
-    inp_file = raw_input("Enter the input file path: ")
+    # inp_file = raw_input("Enter the input file path: ")
     sample_data = np.genfromtxt("Test/test.csv", delimiter=',', dtype=int)
     # sample_data = random.sample(in_data, 10)
 
